@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitForge - Fitness Calculators</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navMenu">
+
+        <a href="index.html">Home</a>
+
+        <a href="workout.html">Workout</a>
+
+        <a href="exercises.html">Exercises</a>
+
+        <a href="calculators.html">Calculators</a>
+
+        <a href="timer.html">Timer</a>
+
+    </nav>
+
+</header>
+
+
+<section id="calculators" class="section">
+
+    <div class="section-title">
+
+        <p>FITNESS CALCULATORS</p>
+
+        <h2>Know Your Numbers</h2>
+
+    </div>
+
+
+    <div class="calculator-grid">
+
+
+        <!-- BMI -->
+
+        <div class="calculator">
+
+            <h3>BMI Calculator</h3>
+
+            <input
+                id="bmiHeight"
+                type="number"
+                placeholder="Height (cm)"
+            >
+
+            <input
+                id="bmiWeight"
+                type="number"
+                placeholder="Weight (kg)"
+            >
+
+            <button
+                class="btn primary"
+                onclick="calculateBMI()">
+
+                CALCULATE BMI
+
+            </button>
+
+            <div
+                id="bmiResult"
+                class="result">
+            </div>
+
+        </div>
+
+
+        <!-- CALORIE -->
+
+        <div class="calculator">
+
+            <h3>Calorie Calculator</h3>
+
+            <input
+                id="calAge"
+                type="number"
+                placeholder="Age"
+            >
+
+
+            <select id="calGender">
+
+                <option value="male">
+                    Male
+                </option>
+
+                <option value="female">
+                    Female
+                </option>
+
+            </select>
+
+
+            <input
+                id="calHeight"
+                type="number"
+                placeholder="Height (cm)"
+            >
+
+
+            <input
+                id="calWeight"
+                type="number"
+                placeholder="Weight (kg)"
+            >
+
+
+            <select id="activity">
+
+                <option value="1.2">
+                    Low Activity
+                </option>
+
+                <option value="1.375">
+                    Light Activity
+                </option>
+
+                <option value="1.55">
+                    Moderate Activity
+                </option>
+
+                <option value="1.725">
+                    High Activity
+                </option>
+
+            </select>
+
+
+            <button
+                class="btn primary"
+                onclick="calculateCalories()">
+
+                CALCULATE
+
+            </button>
+
+
+            <div
+                id="calorieResult"
+                class="result">
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <p>
+        Train smart. Stay consistent. Get stronger.
+    </p>
+
+    <p class="copyright">
+        © 2026 FitForge. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
