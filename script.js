@@ -226,164 +226,119 @@ function generateWorkout() {
    EXERCISE LIBRARY
 ========================= */
 
-const exercises = [
 
+       
+       
+    },
+
+   const exercises = [
     {
         name: "Bench Press",
         category: "chest",
-        icon: "🏋️",
-        description: "Compound chest pressing exercise."
+        image: "images/bench-press.jpg"
     },
-
     {
         name: "Incline Press",
         category: "chest",
-        icon: "💪",
-        description: "Targets the upper chest."
+        image: "images/incline-press.jpg"
     },
-
     {
         name: "Lat Pulldown",
         category: "back",
-        icon: "🔩",
-        description: "Targets the latissimus dorsi."
+        image: "images/lat-pulldown.jpg"
     },
-
     {
         name: "Barbell Row",
         category: "back",
-        icon: "🏋️",
-        description: "Builds back thickness and strength."
+        image: "images/barbell-row.jpg"
     },
-
     {
         name: "Squat",
         category: "legs",
-        icon: "🦵",
-        description: "Major compound lower-body movement."
+        image: "images/squat.jpg"
     },
-
     {
         name: "Leg Press",
         category: "legs",
-        icon: "🦿",
-        description: "Machine-based leg exercise."
+        image: "images/leg-press.jpg"
     },
-
     {
         name: "Shoulder Press",
         category: "shoulders",
-        icon: "💪",
-        description: "Builds shoulder pressing strength."
+        image: "images/shoulder-press.jpg"
     },
-
     {
         name: "Lateral Raise",
         category: "shoulders",
-        icon: "🏋️",
-        description: "Targets the side delts."
+        image: "images/lateral-raise.jpg"
     },
-
     {
         name: "Biceps Curl",
         category: "arms",
-        icon: "💪",
-        description: "Isolation exercise for biceps."
+        image: "images/biceps-curl.jpg"
     },
-
     {
         name: "Triceps Pushdown",
         category: "arms",
-        icon: "🔱",
-        description: "Isolation exercise for triceps."
+        image: "images/triceps-pushdown.jpg"
     },
-
     {
         name: "Hammer Curl",
         category: "arms",
-        icon: "🔨",
-        description: "Works biceps and brachialis."
+        image: "images/hammer-curl.jpg"
+    },
+    {
+        name: "Face Pull",
+        category: "back",
+        image: "images/face-pull.jpg"
+    }
+];
     },
 
     {
-        name: "Face Pull",
-        category: "shoulders",
-        icon: "🎯",
-        description: "Targets rear delts and upper back."
-    }
-
+    
 ];
-
-
-function displayExercises(category = "all") {
+function displayExercises(filter = "all") {
 
     const grid = document.getElementById("exerciseGrid");
 
-    const filtered = category === "all"
-        ? exercises
-        : exercises.filter(ex => ex.category === category);
+    if (!grid) return;
 
-    grid.innerHTML = filtered.map(ex => `
+    grid.innerHTML = "";
 
-        <div class="exercise-card">
+    const filteredExercises =
+        filter === "all"
+            ? exercises
+            : exercises.filter(
+                exercise => exercise.category === filter
+            );
 
+    filteredExercises.forEach(exercise => {
+
+        const card = document.createElement("div");
+
+        card.className = "exercise-card";
+
+        card.innerHTML = `
             <div class="exercise-image">
-                ${ex.icon}
+                <img 
+                    src="${exercise.image}" 
+                    alt="${exercise.name}"
+                    loading="lazy"
+                >
             </div>
 
-            <h3>${ex.name}</h3>
+            <div class="exercise-info">
+                <h3>${exercise.name}</h3>
+                <p>${exercise.category}</p>
+            </div>
+        `;
 
-            <p>${ex.description}</p>
-
-        </div>
-
-    `).join("");
+        grid.appendChild(card);
+    });
 }
 
 
-function filterExercises(category) {
-    displayExercises(category);
-}
-
-
-/* Load exercises */
-displayExercises();
-
-
-/* =========================
-   BMI CALCULATOR
-========================= */
-
-function calculateBMI() {
-
-    const height = Number(document.getElementById("bmiHeight").value);
-    const weight = Number(document.getElementById("bmiWeight").value);
-
-    if (!height || !weight) {
-        document.getElementById("bmiResult").innerHTML =
-            "Please enter height and weight.";
-        return;
-    }
-
-    const heightMeters = height / 100;
-
-    const bmi = weight / (heightMeters * heightMeters);
-
-    let category = "";
-
-    if (bmi < 18.5) {
-        category = "Underweight";
-    } else if (bmi < 25) {
-        category = "Normal";
-    } else if (bmi < 30) {
-        category = "Overweight";
-    } else {
-        category = "Obesity";
-    }
-
-    document.getElementById("bmiResult").innerHTML =
-        `BMI: ${bmi.toFixed(1)} — ${category}`;
-}
 
 
 /* =========================
