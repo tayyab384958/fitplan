@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitForge - Exercise Library</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="workout.html">Workout</a>
+        <a href="exercises.html">Exercises</a>
+        <a href="calculators.html">Calculators</a>
+        <a href="timer.html">Timer</a>
+    </nav>
+
+</header>
+
+
+<section id="exercises" class="section dark-section">
+
+    <div class="section-title">
+        <p>EXERCISE LIBRARY</p>
+        <h2>Popular Exercises</h2>
+    </div>
+
+
+    <div class="exercise-filters">
+
+        <button onclick="filterExercises('all')">
+            All
+        </button>
+
+        <button onclick="filterExercises('chest')">
+            Chest
+        </button>
+
+        <button onclick="filterExercises('back')">
+            Back
+        </button>
+
+        <button onclick="filterExercises('legs')">
+            Legs
+        </button>
+
+        <button onclick="filterExercises('shoulders')">
+            Shoulders
+        </button>
+
+        <button onclick="filterExercises('arms')">
+            Arms
+        </button>
+
+    </div>
+
+
+    <div id="exerciseGrid" class="exercise-grid"></div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <p>Train smart. Stay consistent. Get stronger.</p>
+
+    <p class="copyright">
+        © 2026 FitForge. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
