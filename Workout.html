@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitForge - Workout Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="workout.html">Workout</a>
+        <a href="exercises.html">Exercises</a>
+        <a href="calculators.html">Calculators</a>
+        <a href="timer.html">Timer</a>
+    </nav>
+
+</header>
+
+
+<section id="generator" class="section">
+
+    <div class="section-title">
+        <p>PERSONALIZED TRAINING</p>
+        <h2>Workout Generator</h2>
+    </div>
+
+    <div class="generator-box">
+
+        <div class="input-group">
+
+            <label>YOUR GOAL</label>
+
+            <select id="goal">
+                <option value="muscle">Muscle Gain</option>
+                <option value="strength">Strength</option>
+                <option value="fatloss">Fat Loss</option>
+                <option value="beginner">General Fitness</option>
+            </select>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>EXPERIENCE</label>
+
+            <select id="experience">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>TRAINING DAYS</label>
+
+            <select id="days">
+                <option value="3">3 Days</option>
+                <option value="4">4 Days</option>
+                <option value="5">5 Days</option>
+                <option value="6">6 Days</option>
+            </select>
+
+        </div>
+
+
+        <button
+            class="btn primary generate-btn"
+            onclick="generateWorkout()">
+
+            GENERATE MY WORKOUT
+
+        </button>
+
+    </div>
+
+
+    <div id="workoutResult" class="workout-result"></div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <p>Train smart. Stay consistent. Get stronger.</p>
+
+    <p class="copyright">
+        © 2026 FitForge. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
