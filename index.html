@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitForge - Gym Workout Planner</title>
+    <meta name="description" content="Free gym workout planner, exercise library, BMI calculator and workout timer.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#generator">Workout</a>
+        <a href="#exercises">Exercises</a>
+        <a href="#calculators">Calculators</a>
+        <a href="#timer">Timer</a>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="badge">YOUR FITNESS • YOUR PLAN</p>
+
+        <h1>
+            BUILD YOUR
+            <span>STRONGER</span>
+            SELF.
+        </h1>
+
+        <p class="hero-text">
+            Create a personalized gym workout plan based on your
+            goal, experience and available training days.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#generator" class="btn primary">
+                CREATE WORKOUT
+            </a>
+
+            <a href="#exercises" class="btn secondary">
+                EXPLORE EXERCISES
+            </a>
+        </div>
+
+    </div>
+
+    <div class="hero-card">
+
+        <div class="hero-icon">💪</div>
+
+        <h3>YOUR FITNESS JOURNEY</h3>
+
+        <div class="stat-row">
+            <div>
+                <strong>50+</strong>
+                <small>Exercises</small>
+            </div>
+
+            <div>
+                <strong>6</strong>
+                <small>Goals</small>
+            </div>
+
+            <div>
+                <strong>100%</strong>
+                <small>Free</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+    <div class="feature">
+        <div>🏋️</div>
+        <h3>Workout Plans</h3>
+        <p>Generate workout routines according to your goal.</p>
+    </div>
+
+    <div class="feature">
+        <div>📊</div>
+        <h3>Track Progress</h3>
+        <p>Track your sets, reps and workout progress.</p>
+    </div>
+
+    <div class="feature">
+        <div>⏱️</div>
+        <h3>Rest Timer</h3>
+        <p>Built-in timer for your workout rest periods.</p>
+    </div>
+
+    <div class="feature">
+        <div>🧮</div>
+        <h3>Fitness Tools</h3>
+        <p>Calculate BMI and daily calorie requirements.</p>
+    </div>
+
+</section>
+
+
+<!-- WORKOUT GENERATOR -->
+<section id="generator" class="section">
+
+    <div class="section-title">
+        <p>PERSONALIZED TRAINING</p>
+        <h2>Workout Generator</h2>
+    </div>
+
+    <div class="generator-box">
+
+        <div class="input-group">
+            <label>YOUR GOAL</label>
+
+            <select id="goal">
+                <option value="muscle">Muscle Gain</option>
+                <option value="strength">Strength</option>
+                <option value="fatloss">Fat Loss</option>
+                <option value="beginner">General Fitness</option>
+            </select>
+        </div>
+
+
+        <div class="input-group">
+            <label>EXPERIENCE</label>
+
+            <select id="experience">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+
+
+        <div class="input-group">
+            <label>TRAINING DAYS</label>
+
+            <select id="days">
+                <option value="3">3 Days</option>
+                <option value="4">4 Days</option>
+                <option value="5">5 Days</option>
+                <option value="6">6 Days</option>
+            </select>
+        </div>
+
+
+        <button class="btn primary generate-btn" onclick="generateWorkout()">
+            GENERATE MY WORKOUT
+        </button>
+
+    </div>
+
+
+    <div id="workoutResult" class="workout-result"></div>
+
+</section>
+
+
+<!-- EXERCISES -->
+<section id="exercises" class="section dark-section">
+
+    <div class="section-title">
+        <p>EXERCISE LIBRARY</p>
+        <h2>Popular Exercises</h2>
+    </div>
+
+
+    <div class="exercise-filters">
+
+        <button onclick="filterExercises('all')">All</button>
+        <button onclick="filterExercises('chest')">Chest</button>
+        <button onclick="filterExercises('back')">Back</button>
+        <button onclick="filterExercises('legs')">Legs</button>
+        <button onclick="filterExercises('shoulders')">Shoulders</button>
+        <button onclick="filterExercises('arms')">Arms</button>
+
+    </div>
+
+
+    <div id="exerciseGrid" class="exercise-grid"></div>
+
+</section>
+
+
+<!-- CALCULATORS -->
+<section id="calculators" class="section">
+
+    <div class="section-title">
+        <p>FITNESS CALCULATORS</p>
+        <h2>Know Your Numbers</h2>
+    </div>
+
+
+    <div class="calculator-grid">
+
+
+        <!-- BMI -->
+        <div class="calculator">
+
+            <h3>BMI Calculator</h3>
+
+            <input id="bmiHeight" type="number" placeholder="Height (cm)">
+            <input id="bmiWeight" type="number" placeholder="Weight (kg)">
+
+            <button class="btn primary" onclick="calculateBMI()">
+                CALCULATE BMI
+            </button>
+
+            <div id="bmiResult" class="result"></div>
+
+        </div>
+
+
+        <!-- CALORIES -->
+        <div class="calculator">
+
+            <h3>Calorie Calculator</h3>
+
+            <input id="calAge" type="number" placeholder="Age">
+
+            <select id="calGender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <input id="calHeight" type="number" placeholder="Height (cm)">
+            <input id="calWeight" type="number" placeholder="Weight (kg)">
+
+            <select id="activity">
+                <option value="1.2">Low Activity</option>
+                <option value="1.375">Light Activity</option>
+                <option value="1.55">Moderate Activity</option>
+                <option value="1.725">High Activity</option>
+            </select>
+
+            <button class="btn primary" onclick="calculateCalories()">
+                CALCULATE
+            </button>
+
+            <div id="calorieResult" class="result"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TIMER -->
+<section id="timer" class="timer-section">
+
+    <p>WORKOUT TIMER</p>
+
+    <h2>REST TIMER</h2>
+
+    <div id="timerDisplay">01:00</div>
+
+    <div class="timer-buttons">
+
+        <button onclick="startTimer()">START</button>
+        <button onclick="pauseTimer()">PAUSE</button>
+        <button onclick="resetTimer()">RESET</button>
+
+    </div>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section class="section">
+
+    <div class="section-title">
+        <p>TRAINING TRACKER</p>
+        <h2>Today's Progress</h2>
+    </div>
+
+    <div class="progress-box">
+
+        <div class="progress-number">
+            <span id="completedSets">0</span>
+            <small>SETS COMPLETED</small>
+        </div>
+
+        <div class="progress-bar">
+            <div id="progressFill"></div>
+        </div>
+
+        <button class="btn primary" onclick="completeSet()">
+            ✓ COMPLETE SET
+        </button>
+
+        <button class="btn secondary" onclick="resetProgress()">
+            RESET
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">
+        FIT<span>FORGE</span>
+    </div>
+
+    <p>Train smart. Stay consistent. Get stronger.</p>
+
+    <p class="copyright">
+        © 2026 FitForge. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
