@@ -220,18 +220,11 @@ function generateWorkout() {
 
     document.getElementById("workoutResult").innerHTML = html;
 }
-
-
 /* =========================
    EXERCISE LIBRARY
 ========================= */
 
-
-       
-       
-    },
-
-   const exercises = [
+const exercises = [
     {
         name: "Bench Press",
         category: "chest",
@@ -293,12 +286,49 @@ function generateWorkout() {
         image: "images/face-pull.jpg"
     }
 ];
-    },
+
+
+function displayExercises(filter = "all") {
+
+    const grid = document.getElementById("exerciseGrid");
+
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    const filteredExercises =
+        filter === "all"
+            ? exercises
+            : exercises.filter(
+                exercise => exercise.category === filter
+            );
+
+    filteredExercises.forEach(exercise => {
+
+        const card = document.createElement("div");
+
+        card.className = "exercise-card";
+
+        card.innerHTML = `
+            <div class="exercise-image">
+                <img
+                    src="${exercise.image}"
+                    alt="${exercise.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >
+            </div>
+
+            <div class="exercise-info">
+                <h3>${exercise.name}</h3>
+                <p>${exercise.category}</p>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
 
     {
-    
-];
-function displayExercises(filter = "all") {
 
     const grid = document.getElementById("exerciseGrid");
 
