@@ -1,133 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitForge - Gym Workout Planner</title>
-    <meta name="description" content="FitForge gym workout planner and fitness tools.">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jack -- 3D Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{background:#0C0C0C;color:#D7E2EA;font-family:'Kanit',sans-serif}
+body{overflow-x:clip}
+*{scroll-behavior:smooth}
+.hero-heading{
+ background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);
+ -webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
+section{position:relative}
+nav{display:flex;justify-content:space-between;padding:24px 24px 0;position:relative;z-index:30}
+nav a{color:#D7E2EA;text-decoration:none;text-transform:uppercase;font-weight:500;letter-spacing:.08em;font-size:14px;transition:.2s}
+nav a:hover{opacity:.7}
+
+.hero{height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.hero h1{font-size:14vw;line-height:.85;white-space:nowrap;text-transform:uppercase;font-weight:900;letter-spacing:-.06em;text-align:center;margin-top:24px;position:relative;z-index:2}
+.hero-bottom{margin-top:auto;padding:0 24px 28px;display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:20}
+.hero-bottom p{font-size:clamp(.75rem,1.4vw,1.5rem);font-weight:300;text-transform:uppercase;letter-spacing:.05em;line-height:1.1;max-width:220px}
+.contact{
+border:2px solid white;outline:2px solid white;outline-offset:-5px;
+border-radius:999px;padding:12px 32px;color:#fff;text-decoration:none;
+background:linear-gradient(123deg,#18011F 7%,#B600A8 37%,#7621B0 72%,#BE4C00 100%);
+box-shadow:0 4px 4px #B501A740,4px 4px 12px #7721B1 inset;
+text-transform:uppercase;font-weight:500;letter-spacing:.12em;font-size:12px
+}
+.portrait{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:440px;z-index:10}
+.portrait img{width:100%;display:block}
+
+.marquee{padding:160px 0 40px;overflow:hidden}
+.row{display:flex;gap:12px;width:max-content;margin-bottom:12px}
+.row img{width:420px;height:270px;object-fit:cover;border-radius:16px;display:block}
+
+.about{min-height:100vh;padding:80px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
+.about h2,.services h2,.projects h2{font-size:clamp(3rem,12vw,160px);line-height:.9;font-weight:900;text-transform:uppercase;letter-spacing:-.05em}
+.about p{max-width:560px;font-size:clamp(1rem,2vw,1.35rem);line-height:1.7;font-weight:500;margin-top:56px}
+.about .contact{margin-top:80px}
+.deco{position:absolute;object-fit:contain}
+.moon{width:160px;top:4%;left:2%}
+.obj{width:140px;bottom:8%;left:6%}
+.lego{width:160px;top:4%;right:2%}
+.group{width:170px;bottom:8%;right:6%}
+
+.services{background:#fff;color:#0C0C0C;border-radius:50px 50px 0 0;padding:96px 20px 128px}
+.services h2{text-align:center;margin-bottom:90px}
+.service{max-width:1024px;margin:auto;border-bottom:1px solid #0c0c0c26;padding:40px 0;display:grid;grid-template-columns:35% 65%;align-items:center}
+.service b{font-size:clamp(3rem,10vw,140px);font-weight:900;line-height:.8}
+.service h3{font-size:clamp(1rem,2.2vw,2.1rem);font-weight:500;text-transform:uppercase}
+.service p{font-size:clamp(.85rem,1.6vw,1.25rem);font-weight:300;line-height:1.6;opacity:.6;max-width:700px}
+
+.projects{background:#0C0C0C;border-radius:50px 50px 0 0;margin-top:-56px;padding:100px 20px 0;position:relative;z-index:10}
+.projects h2{text-align:center;margin-bottom:60px}
+.card-wrap{height:85vh;position:relative}
+.card{
+position:sticky;top:100px;height:80vh;background:#0C0C0C;
+border:2px solid #D7E2EA;border-radius:50px;padding:24px;
+transform-origin:top;transition:transform .2s
+}
+.card-top{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+.num{font-size:clamp(3rem,10vw,140px);font-weight:900;line-height:.7}
+.category{text-transform:uppercase;opacity:.6}
+.card h3{font-size:clamp(1.2rem,3vw,3rem);font-weight:500;text-transform:uppercase;margin-right:auto}
+.live{border:2px solid #D7E2EA;border-radius:999px;padding:12px 28px;color:#D7E2EA;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
+.images{display:grid;grid-template-columns:40% 60%;gap:12px;height:calc(100% - 130px)}
+.left{display:flex;flex-direction:column;gap:12px}
+.images img{width:100%;height:100%;object-fit:cover;border-radius:45px}
+.left img:first-child{height:40%}
+.left img:last-child{height:60%}
+
+@media(min-width:640px){
+nav{padding:32px 40px 0}
+nav a{font-size:18px}
+.hero h1{font-size:15vw;margin-top:16px}
+.hero-bottom{padding:0 40px 32px}
+.portrait{width:360px}
+.marquee{padding-top:128px}
+}
+@media(min-width:768px){
+.hero h1{font-size:16vw;margin-top:-20px}
+.portrait{width:440px}
+.about{padding:80px 40px}
+.services{padding:128px 40px}
+.projects{padding-left:40px;padding-right:40px}
+}
+@media(min-width:1024px){
+.hero h1{font-size:17.5vw}
+.portrait{width:520px}
+nav a{font-size:1.4rem}
+}
+@media(max-width:639px){
+.hero h1{margin-top:24px}
+.portrait{width:280px;top:50%;bottom:auto;transform:translate(-50%,-50%)}
+.hero-bottom{padding:0 24px 28px}
+.hero-bottom p{max-width:160px}
+.contact{padding:12px 24px}
+.marquee{padding-top:96px}
+.row img{width:300px;height:200px}
+.deco{opacity:.8}
+.moon,.lego{width:120px}
+.obj{width:100px}
+.group{width:130px}
+.services{border-radius:40px 40px 0 0}
+.projects{border-radius:40px 40px 0 0}
+.service{grid-template-columns:1fr;gap:25px}
+.card{border-radius:40px;padding:16px}
+.card-top{gap:10px;flex-wrap:wrap}
+.card h3{width:100%;order:3}
+.live{padding:10px 18px;font-size:12px}
+.images{height:calc(100% - 170px)}
+.images img{border-radius:30px}
+}
+
+.fade{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+.fade.show{opacity:1;transform:translateY(0)}
+</style>
 </head>
 
 <body>
+<div id="root">
 
-<header class="navbar">
-    <div class="logo">
-        FIT<span>FORGE</span>
-    </div>
+<section class="hero" id="home">
+<nav>
+<a href="#about">About</a><a href="#services">Price</a>
+<a href="#projects">Projects</a><a href="#contact">Contact</a>
+</nav>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+<div style="overflow:hidden">
+<h1 class="hero-heading fade">Hi, i'm jack</h1>
+</div>
 
-    <nav id="navMenu">
-        <a href="index.html">Home</a>
-        <a href="workout.html">Workout</a>
-        <a href="exercises.html">Exercises</a>
-        <a href="calculators.html">Calculators</a>
-        <a href="timer.html">Timer</a>
-    </nav>
-</header>
+<div class="portrait fade">
+<img src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png">
+</div>
 
-
-<section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <p class="badge">YOUR FITNESS • YOUR PLAN</p>
-
-        <h1>
-            BUILD YOUR
-            <span>STRONGER</span>
-            SELF.
-        </h1>
-
-        <p class="hero-text">
-            Create a personalized gym workout plan based on your
-            goal, experience and available training days.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="workout.html" class="btn primary">
-                CREATE WORKOUT
-            </a>
-
-            <a href="exercises.html" class="btn secondary">
-                EXPLORE EXERCISES
-            </a>
-        </div>
-
-    </div>
-
-    <div class="hero-card">
-
-        <div class="hero-icon">💪</div>
-
-        <h3>YOUR FITNESS JOURNEY</h3>
-
-        <div class="stat-row">
-            <div>
-                <strong>50+</strong>
-                <small>Exercises</small>
-            </div>
-
-            <div>
-                <strong>6</strong>
-                <small>Goals</small>
-            </div>
-
-            <div>
-                <strong>100%</strong>
-                <small>Free</small>
-            </div>
-        </div>
-
-    </div>
-
+<div class="hero-bottom">
+<p class="fade">a 3d creator driven by crafting striking and unforgettable projects</p>
+<a class="contact fade" href="#contact">Contact Me</a>
+</div>
 </section>
 
-
-<section class="features">
-
-    <div class="feature">
-        <div>🏋️</div>
-        <h3>Workout Plans</h3>
-        <p>Generate workout routines according to your goal.</p>
-    </div>
-
-    <div class="feature">
-        <div>📊</div>
-        <h3>Track Progress</h3>
-        <p>Track your sets, reps and workout progress.</p>
-    </div>
-
-    <div class="feature">
-        <div>⏱️</div>
-        <h3>Rest Timer</h3>
-        <p>Built-in timer for your workout rest periods.</p>
-    </div>
-
-    <div class="feature">
-        <div>🧮</div>
-        <h3>Fitness Tools</h3>
-        <p>Calculate BMI and daily calorie requirements.</p>
-    </div>
-
+<section class="marquee">
+<div class="row r1"></div>
+<div class="row r2"></div>
 </section>
 
+<section class="about" id="about">
+<img class="deco moon" src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png">
+<img class="deco obj" src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png">
+<img class="deco lego" src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png">
+<img class="deco group" src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png">
 
-<footer>
+<h2 class="hero-heading fade">About me</h2>
+<p class="fade">With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!</p>
+<a class="contact fade" href="#contact">Contact Me</a>
+</section>
 
-    <div class="logo">
-        FIT<span>FORGE</span>
-    </div>
+<section class="services" id="services">
+<h2>Services</h2>
 
-    <p>Train smart. Stay consistent. Get stronger.</p>
+<div class="service"><b>01</b><div><h3>3D Modeling</h3><p>Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.</p></div></div>
+<div class="service"><b>02</b><div><h3>Rendering</h3><p>High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.</p></div></div>
+<div class="service"><b>03</b><div><h3>Motion Design</h3><p>Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.</p></div></div>
+<div class="service"><b>04</b><div><h3>Branding</h3><p>Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.</p></div></div>
+<div class="service"><b>05</b><div><h3>Web Design</h3><p>Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.</p></div></div>
+</section>
 
-    <p class="copyright">
-        © 2026 FitForge. All rights reserved.
-    </p>
+<section class="projects" id="projects">
+<h2 class="hero-heading">Project</h2>
+<div id="cards"></div>
+</section>
 
-</footer>
+<section id="contact" style="height:30vh;display:flex;align-items:center;justify-content:center">
+<a class="contact" href="mailto:hello@example.com">Contact Me</a>
+</section>
 
-<script src="script.js"></script>
+</div>
 
+<script>
+const gifs=[
+"https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
+"https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
+"https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
+"https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
+"https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
+"https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
+"https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
+"https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
+"https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
+"https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
+"https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
+"https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
+"https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
+"https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
+"https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
+"https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
+"https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
+"https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
+"https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
+"https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
+"https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif"];
+
+function fillRow(el,arr){
+[...arr,...arr,...arr].forEach(src=>{
+ const i=document.createElement("img");i.src=src;i.loading="lazy";el.appendChild(i)
+})
+}
+fillRow(document.querySelector(".r1"),gifs.slice(0,11));
+fillRow(document.querySelector(".r2"),gifs.slice(11));
+
+window.addEventListener("scroll",()=>{
+ const y=scrollY*.3;
+ document.querySelector(".r1").style.transform=`translateX(${y%1800-1800}px)`;
+ document.querySelector(".r2").style.transform=`translateX(${-(y%1800)}px)`;
+
+ document.querySelectorAll(".card").forEach((c,i)=>{
+  const r=c.parentElement.getBoundingClientRect();
+  const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+  c.style.transform=`scale(${1-(2-i)*.03*p})`
+ })
+},{passive:true});
+
+const projects=[
+["01","Client","Nextlevel Studio",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85"],
+["02","Personal","Aura Brand Identity",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85"],
+["03","Client","Solaris Digital",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
+"https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85"]];
+
+const box=document.getElementById("cards");
+projects.forEach((p,i)=>{
+ box.innerHTML+=`
+ <div class="card-wrap">
+  <div class="card" style="top:${100+i*28}px">
+   <div class="card-top"><span class="num">${p[0]}</span><span class="category">${p[1]}</span><h3>${p[2]}</h3><a class="live" href="#">Live Project</a></div>
+   <div class="images">
+    <div class="left"><img src="${p[3]}"><img src="${p[4]}"></div>
+    <img src="${p[5]}">
+   </div>
+  </div>
+ </div>`
+});
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+ if(e.isIntersecting)e.target.classList.add("show")
+}),{threshold:0});
+document.querySelectorAll(".fade").forEach(e=>obs.observe(e));
+</script>
 </body>
 </html>
